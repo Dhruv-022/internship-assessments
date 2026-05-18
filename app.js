@@ -106,4 +106,56 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollElements.forEach(element => {
         observer.observe(element);
     });
+
+    // ==========================================================================
+    // 6. LEGAL MODALS CONTROLLER 
+    // ==========================================================================
+    const privacyLink = document.getElementById('openPrivacy');
+    const termsLink = document.getElementById('openTerms');
+    const privacyModal = document.getElementById('privacyModal');
+    const termsModal = document.getElementById('termsModal');
+    const closeButtons = document.querySelectorAll('.close-modal-btn');
+
+    const openModal = (e, modalElement) => {
+        e.preventDefault(); // Halt standard # jump behavior
+        modalElement.classList.remove('hidden');
+        modalElement.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Freeze body scroll background
+    };
+
+    const closeModal = (modalElement) => {
+        modalElement.classList.add('hidden');
+        modalElement.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = ''; // Restore background scrolling
+    };
+
+    if (privacyLink && privacyModal) {
+        privacyLink.addEventListener('click', (e) => openModal(e, privacyModal));
+    }
+    if (termsLink && termsModal) {
+        termsLink.addEventListener('click', (e) => openModal(e, termsModal));
+    }
+
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modalId = btn.getAttribute('data-close');
+            const targetModal = document.getElementById(modalId);
+            if (targetModal) closeModal(targetModal);
+        });
+    });
+
+    // Close modal cleanly if user clicks on the blurred outer backdrop area
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('legal-modal-overlay')) {
+            closeModal(e.target);
+        }
+    });
+
+    // Close modal if user hits the Escape key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (privacyModal && !privacyModal.classList.contains('hidden')) closeModal(privacyModal);
+            if (termsModal && !termsModal.classList.contains('hidden')) closeModal(termsModal);
+        }
+    });
 });

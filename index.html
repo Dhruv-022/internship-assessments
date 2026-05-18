@@ -25,7 +25,7 @@
             <nav class="nav-menu">
                 <a href="#services" class="nav-link">Our Expertise</a>
                 <a href="#process" class="nav-link">The Transit Matrix</a>
-                <a href="#quote" class="nav-link">Safety Matrix</a>
+                <a href="#quote" class="nav-link">Get an Estimate</a>
             </nav>
             
             <div class="nav-actions">
@@ -146,27 +146,27 @@
                         <div class="form-row-split">
                             <div class="input-group">
                                 <label for="fullName" class="form-label">Full Name</label>
-                                <input type="text" id="fullName" name="fullName" placeholder="Alexander Wright" class="form-input">
-                                <span class="error-msg" id="nameError">Please enter your legal name.</span>
+                                <input type="text" id="fullName" name="fullName" placeholder="Alexander Wright" class="form-input" aria-describedby="nameError">
+                                <span class="error-msg" id="nameError" aria-live="assertive">Please enter your legal name.</span>
                             </div>
                             <div class="input-group">
                                 <label for="phone" class="form-label">Direct Contact Number</label>
-                                <input type="tel" id="phone" name="phone" placeholder="(555) 012-3456" class="form-input">
-                                <span class="error-msg" id="phoneError">Please provide a valid 10-digit number.</span>
+                                <input type="tel" id="phone" name="phone" placeholder="(555) 012-3456" class="form-input" aria-describedby="phoneError">
+                                <span class="error-msg" id="phoneError" aria-live="assertive">Please provide a valid 10-digit number.</span>
                             </div>
                         </div>
                         
                         <div class="input-group">
                             <label for="serviceType" class="form-label">Required Logistics Class</label>
                             <div class="select-wrapper">
-                                <select id="serviceType" name="serviceType" class="form-select">
+                                <select id="serviceType" name="serviceType" class="form-select" aria-describedby="serviceError">
                                     <option value="" disabled selected>Select transit configuration...</option>
                                     <option value="residential">Premium Estate Shifting</option>
                                     <option value="corporate">Corporate Infrastructure</option>
                                     <option value="vehicle">Enclosed Auto-Transport</option>
                                 </select>
                             </div>
-                            <span class="error-msg" id="serviceError">Please select a logistics class to continue.</span>
+                            <span class="error-msg" id="serviceError" aria-live="assertive">Please select a logistics class to continue.</span>
                         </div>
                         
                         <div class="form-action-wrapper">
@@ -192,11 +192,53 @@
         <div class="footer-container">
             <p class="footer-copyright">&copy; 2026 MoversX Logistics Network. Crafted for premium physical transit operations.</p>
             <div class="footer-links">
-                <a href="#" class="footer-link">Privacy Paradigm</a>
-                <a href="#" class="footer-link">Terms of Transit</a>
+                <a href="#privacyModal" id="openPrivacy" class="footer-link">Privacy Paradigm</a>
+                <a href="#termsModal" id="openTerms" class="footer-link">Terms of Transit</a>
             </div>
         </div>
     </footer>
+
+    <div id="privacyModal" class="legal-modal-overlay hidden" aria-hidden="true" role="dialog">
+        <div class="legal-modal-box">
+            <div class="legal-modal-header">
+                <h3 class="legal-modal-title">Privacy Paradigm // Data Cryptography Policy</h3>
+                <button class="close-modal-btn" data-close="privacyModal" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="legal-modal-body">
+                <p class="legal-meta">Last Updated: May 2026 // Version 4.01</p>
+                
+                <h4>1.0 Asset Information Manifests</h4>
+                <p>We treat physical asset layouts with the identical security protocols reserved for high-value cryptography keys. When parameterizing your inventory manifest, all weight, volume, and interior schematics are encrypted in transport using AES-256 protocols before being written to our offline logistics routing engines.</p>
+                
+                <h4>2.0 Telemetry Tracking & Routing Matrix</h4>
+                <p>During physical transit operations, telemetry positioning tracking data of cargo containers is exclusively synced over secure local mesh nodes and satellite bands. No real-time spatial positioning records are leaked or broadcasted to public API endpoints or third-party mapping networks.</p>
+                
+                <h4>3.0 Structural Data Retention</h4>
+                <p>Upon absolute completion of the asset placement sequence, all physical home blueprints, workplace network layouts, and secure entry corridor records are hard-purged from our active terminal relays within 72 standard operational hours.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="legal-modal-overlay hidden" aria-hidden="true" role="dialog">
+        <div class="legal-modal-box">
+            <div class="legal-modal-header">
+                <h3 class="legal-modal-title">Terms of Transit // Operational Protocols</h3>
+                <button class="close-modal-btn" data-close="termsModal" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="legal-modal-body">
+                <p class="legal-meta">Effective Date: May 19, 2026</p>
+                
+                <h4>1.0 Manifest Parameters & Integrity</h4>
+                <p>The client explicitly certifies that the physical asset manifest logged through our digital secure entry platform is completely accurate. Any unparameterized assets that introduce undisclosed center-of-gravity displacements or structural load risks will delay transit operations until safety isolation parameters are recalculated.</p>
+                
+                <h4>2.0 Climate & Shock Isolation Standards</h4>
+                <p>MoversX guarantees clinical shock mitigation and climate normalization inside our custom pneumatically isolated containers. However, items with highly volatile internal chemical compositions or pre-existing component degradation must be declared prior to the execution of Phase_02 packing sequences.</p>
+                
+                <h4>3.0 Operational Downtime Exclusions</h4>
+                <p>Corporate infrastructure transitions are systematically mapped strictly within agreed operational windows to guarantee zero-friction delivery. Force majeure atmospheric events or secure routing corridor updates by defense networks may update transit tracks dynamically.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
