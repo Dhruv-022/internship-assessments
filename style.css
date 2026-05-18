@@ -1,0 +1,733 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM VARIABLES & CORE SETUP
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --color-dark: #0F172A;       /* Deep Slate/Charcoal */
+    --color-accent: #E11D48;     /* Premium Rose/Crimson */
+    --color-accent-hover: #BE123C;
+    --color-bg-muted: #F8FAFC;   /* Studio Off-White */
+    --color-clay: #F1F5F9;       /* Light Contrast Grey */
+    --color-border: #E2E8F0;
+    --color-text-main: #334155;
+    --color-text-muted: #64748B;
+    
+    /* Typography */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Custom Timing Functions for Anti-AI Feel */
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-muted);
+    color: var(--color-dark);
+    line-height: 1.6;
+    /* Custom subtle background radial gradient gradient mesh */
+    background-image: radial-gradient(circle at top right, rgba(225, 29, 72, 0.05) 0%, transparent 45%);
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY & BUTTONS
+   ========================================================================== */
+h1, h2, h3, h4 {
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+/* Custom premium buttons */
+.btn-primary-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.25rem;
+    height: 2.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    background-color: var(--color-dark);
+    color: #ffffff;
+    border-radius: 9999px;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary-sm:hover {
+    background-color: var(--color-accent);
+}
+
+.btn-accent-lg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    height: 3.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.25);
+    transition: var(--transition-smooth);
+}
+
+.btn-accent-lg:hover {
+    background-color: var(--color-dark);
+    box-shadow: none;
+    transform: translateY(-2px);
+}
+
+.btn-secondary-lg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    height: 3.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--color-border);
+    background-color: transparent;
+    color: var(--color-dark);
+    border-radius: 0.75rem;
+    transition: var(--transition-smooth);
+}
+
+.btn-secondary-lg:hover {
+    background-color: #ffffff;
+    border-color: var(--color-dark);
+}
+
+/* ==========================================================================
+   3. FIXED GLASSMORPHIC NAVBAR
+   ========================================================================== */
+.navbar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.nav-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-dark);
+    letter-spacing: -0.02em;
+}
+
+.accent-dot {
+    color: var(--color-accent);
+}
+
+.nav-menu {
+    display: none; /* Mobile first hidden */
+}
+
+@media (min-width: 768px) {
+    .nav-menu {
+        display: flex;
+        gap: 2rem;
+    }
+}
+
+.nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-dark);
+}
+
+/* ==========================================================================
+   4. ASYMMETRICAL HERO SECTION
+   ========================================================================== */
+.hero-section {
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+}
+
+.hero-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .hero-container {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .hero-content {
+        grid-column: span 7;
+    }
+    .hero-graphic-wrapper {
+        grid-column: span 5;
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--color-clay);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-main);
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title-italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-text-muted);
+}
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-main);
+    max-width: 34rem;
+    margin-bottom: 2rem;
+}
+
+.hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .hero-cta-group {
+        flex-direction: row;
+    }
+}
+
+/* Premium Framed Asset Box */
+.hero-graphic-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-clay);
+    border-radius: 3rem;
+    border-top-right-radius: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.graphic-bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(203,213,225,0.4) 100%);
+}
+
+.graphic-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.graphic-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.graphic-heading {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.graphic-text {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    max-width: 18rem;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   5. SERVICES BENTO GRID
+   ========================================================================== */
+.services-section {
+    background-color: #ffffff;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 6rem 0;
+}
+
+.section-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section-header {
+    max-width: 36rem;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+    color: var(--color-text-muted);
+}
+
+/* Asymmetric Bento Layout Configuration */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .bento-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.bento-card {
+    padding: 2.5rem;
+    border-radius: 2rem;
+    min-height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-light {
+    background-color: var(--color-clay);
+}
+
+.card-light:hover {
+    box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.08);
+}
+
+.card-dark {
+    background-color: var(--color-dark);
+    color: #ffffff;
+}
+
+.card-dark h3 {
+    color: #ffffff;
+}
+
+.card-dark .card-text {
+    color: #cbd5e1;
+}
+
+.card-dark:hover {
+    box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.3);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+}
+
+.card-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    font-size: 0.925rem;
+    color: var(--color-text-main);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   6. INTERACTIVE CONVERSION FORM CONTAINER
+   ========================================================================== */
+.form-section {
+    padding: 6rem 0;
+    max-width: 56rem;
+    margin: 0 auto;
+}
+
+.form-wrapper {
+    background-color: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 2.5rem;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.04);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 640px) {
+    .form-wrapper {
+        padding: 4rem;
+    }
+}
+
+.form-header {
+    text-align: center;
+    max-width: 32rem;
+    margin: 0 auto 3rem auto;
+}
+
+.form-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.form-subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+}
+
+.interactive-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .form-row-split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    height: 3.5rem;
+    padding: 0 1rem;
+    background-color: var(--color-bg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-dark);
+    transition: var(--transition-smooth);
+    outline: none;
+}
+
+/* Beautiful form focus states */
+.form-input:focus, .form-select:focus {
+    border-color: var(--color-accent);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.08);
+}
+
+/* Custom design for native drop-down arrow */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrapper::after {
+    content: '↓';
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 2.5rem;
+}
+
+/* Error States */
+.input-group.invalid .form-input,
+.input-group.invalid .form-select {
+    border-color: #EF4444;
+    background-color: #FEF2F2;
+}
+
+.error-msg {
+    display: none;
+    font-size: 0.75rem;
+    color: #EF4444;
+    margin-top: 0.35rem;
+    font-weight: 500;
+}
+
+.input-group.invalid .error-msg {
+    display: block;
+}
+
+.btn-submit {
+    width: 100%;
+    height: 3.5rem;
+    background-color: var(--color-dark);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.btn-submit:hover {
+    background-color: var(--color-accent);
+    box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.25);
+}
+
+/* Success Slate Overlay Layer */
+.success-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #ffffff;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.success-overlay:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-content {
+    text-align: center;
+    max-width: 26rem;
+}
+
+.success-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.success-heading {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.success-text {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+.main-footer {
+    background-color: var(--color-dark);
+    color: #94A3B8;
+    padding: 3rem 0;
+    font-size: 0.875rem;
+    border-top: 1px solid #1E293B;
+}
+
+.footer-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .footer-container {
+        flex-direction: row;
+        gap: 0;
+    }
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-link {
+    color: #94A3B8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   8. PROCESS TEXT MATRICES BLOCK STYLING
+   ========================================================================== */
+.process-section {
+    padding: 8rem 0;
+    background-color: #ffffff; 
+    border-bottom: 1px solid var(--color-border);
+}
+
+.text-center-modifier {
+    text-align: center;
+    margin: 0 auto 5rem auto;
+}
+
+.section-subtitle-premium {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    letter-spacing: -0.01em;
+    margin-top: 0.5rem;
+}
+
+.process-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4rem;
+}
+
+.step-node {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-dark); 
+    padding-top: 1.5rem;
+}
+
+.step-number {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.step-heading {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em; 
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+}
+
+.step-text {
+    font-family: var(--font-sans);
+    color: var(--color-text-main);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   9. INTERSECTION OBSERVER ANIMATIONS (PREMIUM SMOOTH SCROLL)
+   ========================================================================== */
+
+/* The base style for any element we want to fade in smoothly on scroll */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+/* Stagger targets for grid cards so they don't pop up all at once */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* The active class triggered dynamically by JavaScript */
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Micro-interaction: Subtle premium hover accent for bento cards */
+.bento-card {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.bento-card:hover {
+    transform: translateY(-8px);
+}
